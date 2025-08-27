@@ -1,4 +1,4 @@
-module github.com/Penny-Labs/foundry
+module github.com/penny-labs/foundry
 
 go 1.25.0
 
