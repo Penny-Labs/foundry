@@ -21,3 +21,10 @@ func RenderJson(w http.ResponseWriter, v interface{}, statusCode int) {
 	w.WriteHeader(statusCode)
 	_, _ = w.Write(buf.Bytes())
 }
+
+func JsonError(w http.ResponseWriter, message string, code int) {
+	w.Header().Del("Content-Length")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
+
+	RenderJson(w, map[string]string{"error": message}, code)
+}

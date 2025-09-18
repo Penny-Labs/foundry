@@ -32,3 +32,18 @@ var _ = Describe("RenderJson", func() {
 		Expect(recorder.Body.String()).To(ContainSubstring("json: unsupported type: chan int"))
 	})
 })
+
+var _ = Describe("JsonError", func() {
+	It("should write valid JSON error message and status code", func() {
+		recorder := httptest.NewRecorder()
+		message := "An error occurred"
+		JsonError(recorder, message, http.StatusBadRequest)
+
+		Expect(recorder.Code).To(Equal(http.StatusBadRequest))
+		Expect(recorder.Header().Get("Content-Type")).To(Equal("application/json; charset=utf-8"))
+
+		var resp map[string]string
+		Expect(json.Unmarshal(recorder.Body.Bytes(), &resp)).To(Succeed())
+		Expect(resp).To(Equal(map[string]string{"error": message}))
+	})
+})
