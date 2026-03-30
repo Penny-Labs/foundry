@@ -37,6 +37,7 @@ func (l LoggerKey) String() string {
 
 // LogFromContextOrDiscard will check the LogKey if the logger exists in the context.
 // WHen the logger does not exist in the context we will create a discard logger from zap and it will not output anything
+// Deprecated: use logr.FromContextOrDiscard instead and ensure the logger is added to the context with the appropriate key.
 func LogFromContextOrDiscard(ctx context.Context, logKey LoggerKey) logr.Logger {
 	if v, ok := ctx.Value(logKey).(logr.Logger); ok {
 		return v
