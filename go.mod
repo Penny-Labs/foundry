@@ -5,7 +5,7 @@ go 1.26
 require (
 	github.com/go-logr/logr v1.4.3
 	github.com/go-logr/zapr v1.3.0
-	github.com/onsi/ginkgo/v2 v2.28.1
+	github.com/onsi/ginkgo/v2 v2.28.2
 	github.com/onsi/gomega v1.39.1
 	go.uber.org/zap v1.27.1
 	golang.org/x/crypto v0.50.0
